@@ -126,6 +126,8 @@ require('lazy').setup({
     },
   },
 
+ {'windwp/nvim-autopairs'},
+
   'kdheepak/lazygit.nvim',
 
   -- Useful plugin to show you pending keybinds.
@@ -489,6 +491,8 @@ local servers = {
 
 -- Setup neovim lua configuration
 require('neodev').setup()
+
+require('nvim-autopairs').setup {}
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -1,0 +1,87 @@
+ZSH_THEME="robbyrussell"
+PROMPT='[%T] %F{240}%n%F{red}@%F{green}%m%F{red}:%F{120}%~ %F{reset}'$'\n$ '
+export PATH="$PATH:$HOME/bin"
+
+bindkey -v # VIM bindings
+
+###################
+### Emacs
+###################
+
+export PYGNPATH="$HOME/workspace/pygn-mode"
+export UCIMODEPATH="$HOME/workspace/uci-mode"
+export PATH="$PATH:$HOME/.emacs.d/bin"
+
+###################
+### ChessCom
+###################
+
+if [[ -f "$HOME/.secrets.sh" ]]; then
+   source "$HOME/.secrets.sh"
+fi
+
+export CHESSCOM_PATH="/users/dodgecoates/workspace/ChessCom"
+export CEE_PATH=/users/dodgecoates/workspace/ChessCom/explanation-engine
+export CEE_BUILD_PATH="${CEE_PATH}/build_lib"
+export CEE_BIN_PATH=${CEE_PATH}/bin
+export PATH="$PATH:${CEE_BIN_PATH}"
+export CEE_BIN=${CEE_BIN_PATH}/explanation-engine
+export CEE_LIBRARY_PATH="${CEE_BIN_PATH}/libcee.dylib"
+export CEE_INTERFACE_PATH="${CHESSCOM_PATH}/explanation-engine-interface"
+export DO_CEE_COMPILE_COMMANDS=true
+export PATH="/Users/dodgecoates/workspace/ChessCom/clue/.bin/zig":$PATH
+export PATH="$HOME/src/zls/zig-out/bin":$PATH
+
+# Python
+export PYTHONPATH="${PYTHON_PATH}:${CEE_INTERFACE_PATH}/python"
+
+###################
+### Terminal & Shell
+###################
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+
+export FZF_DEFAULT_OPTS='--height 20% --layout=reverse --border'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+PATH=$PATH:$HOME/bin
+
+################
+### Desktop
+################
+
+# This article from Lifehacker.com.au suggests setting the Dock autohide delay to 1000 seconds, like so:
+#
+defaults write com.apple.dock autohide-delay -float 1000; killall Dock
+#
+# To restore the default behavior:
+#
+#    defaults delete com.apple.dock autohide-delay; killall Dock
+#
+# The author says he sets the delay to two seconds, so he can still get to the Dock in those rare cases when it's needed.
+export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dodgecoates/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dodgecoates/bin/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+# if [ -f '/Users/dodgecoates/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dodgecoates/bin/google-cloud-sdk/completion.zsh.inc'; fi

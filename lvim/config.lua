@@ -72,7 +72,7 @@ lvim.builtin.treesitter.indent = { enable = true, disable = { "cpp" } }
 -- Append ; to line with <Leader>; and use which_key_ignore to hide it from the menu
 lvim.builtin.which_key.mappings[";"] = { "mvA;<ESC>`v", "which_key_ignore" }
 -- Replace word under cursor with <Leader>r and use which_key_ignore to hide it from the menu
-lvim.builtin.which_key.mappings["r"] = { "ciw", "which_key_ignore" };;
+lvim.builtin.which_key.mappings["r"] = { "ciw", "which_key_ignore" }
 lvim.builtin.which_key.mappings["t"] = { ":ClangdSwitchSourceHeader<CR>", "Toggle source/header" }
 lvim.builtin.which_key.mappings["h"] = { "<cmd>set hlsearch!<CR>", "Toggle Highlight" }
 -- Set filetypes that are autoformatted on save

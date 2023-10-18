@@ -92,12 +92,3 @@ lvim.builtin.which_key.mappings["n"] = { "j/\\V\\(<<<<\\)\\|\\(====\\)\\|\\(||||
 lvim.builtin.which_key.mappings["N"] = { "k?\\V\\(<<<<\\)\\|\\(====\\)\\|\\(||||\\)<CR>", "which_key_ignore" }
 lvim.lsp.buffer_mappings.normal_mode['gh'] = { vim.lsp.buf.hover, "LSP Hover" }
 lvim.lsp.installer.setup.automatic_installation = true
--- Add additional plugins here
-lvim.plugins = {
-  -- {example/plugin}
-  { "Mofiqul/vscode.nvim" },
-  { "max397574/better-escape.nvim" },
-}
-
--- vim.g.vscode_style = "dark"
--- lvim.colorscheme = 'vscode'

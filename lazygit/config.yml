@@ -84,8 +84,8 @@ git:
   parseEmoji: false
 os:
   copyToClipboardCmd: '' # See 'Custom Command for Copying to Clipboard' section
-  editPreset: '' # see 'Configuring File Editing' section
   edit: ''
+  editPreset: 'nvim' # see 'Configuring File Editing' section
   editAtLine: ''
   editAtLineAndWait: ''
   open: ''

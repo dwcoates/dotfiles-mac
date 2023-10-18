@@ -21,7 +21,7 @@ gui:
     optionsTextColor:
       - blue
     selectedLineBgColor:
-      - blue # set to `default` to have no background colour
+      - underline # set to `default` to have no background colour
     selectedRangeBgColor:
       - blue
     cherryPickedCommitBgColor:
@@ -175,7 +175,7 @@ keybinding:
     stashAllChanges: 's'
     viewStashOptions: 'S'
     toggleStagedAll: 'a' # stage/unstage all
-    viewResetOptions: 'D'
+    viewResetOptions: 'Z'
     fetch: 'f'
     toggleTreeView: '`'
     openMergeTool: 'M'

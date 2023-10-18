@@ -120,6 +120,12 @@
 
   # Scrolling distance multiplier.
   #multiplier: 3
+  #
+
+font:
+  normal:
+    family: 'DroidSansM Nerd Font'
+    style: Regular
 
 # Font configuration
 # font:

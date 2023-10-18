@@ -29,7 +29,7 @@ gui:
     cherryPickedCommitFgColor:
       - blue
     unstagedChangesColor:
-      - red
+      - yellow
     defaultFgColor:
       - default
   commitLength:

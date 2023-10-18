@@ -20,8 +20,8 @@ if [[ -f "$HOME/.secrets.sh" ]]; then
    source "$HOME/.secrets.sh"
 fi
 
-export CHESSCOM_PATH="/users/dodgecoates/workspace/ChessCom"
-export CEE_PATH=/users/dodgecoates/workspace/ChessCom/explanation-engine
+export CHESSCOM_PATH="$HOME/workspace/ChessCom"
+export CEE_PATH=${CHESSCOM_PATH}/explanation-engine
 export CEE_BUILD_PATH="${CEE_PATH}/build_lib"
 export CEE_BIN_PATH=${CEE_PATH}/bin
 export PATH="$PATH:${CEE_BIN_PATH}"
@@ -31,6 +31,16 @@ export CEE_INTERFACE_PATH="${CHESSCOM_PATH}/explanation-engine-interface"
 export DO_CEE_COMPILE_COMMANDS=true
 export PATH="/Users/dodgecoates/workspace/ChessCom/clue/.bin/zig":$PATH
 export PATH="$HOME/src/zls/zig-out/bin":$PATH
+export PATH="$HOME/src/nvim/bin":$PATH
+
+alias v=nvim
+export z=$HOME/.zshrc
+export ee=$CEE_PATH
+export n=$HOME/.config/nvim/init.lua 
+export cl=${CHESSCOM_PATH}/clue
+export ce=${CHESSCOM_PATH}/ceac
+export es=${CHESSCOM_PATH}/engine-services
+export cm=${CHESSCOM_PATH}/cee-microservice
 
 # Python
 export PYTHONPATH="${PYTHON_PATH}:${CEE_INTERFACE_PATH}/python"
@@ -85,3 +95,6 @@ if [ -f '/Users/dodgecoates/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users
 
 # The next line enables shell command completion for gcloud.
 # if [ -f '/Users/dodgecoates/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dodgecoates/bin/google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH="$HOME/.local/bin":$PATH
+export EDITOR=lvim

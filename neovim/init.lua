@@ -74,6 +74,8 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
+  {'mbbill/undotree'},
+
   {
     'christoomey/vim-tmux-navigator',
     event = 'VimEnter',  -- Load on VimEnter event
@@ -87,9 +89,15 @@ require('lazy').setup({
     event = 'VimEnter',  -- Load vim-matchup on VimEnter event
   },
 
+  {"tpope/vim-dispatch"},
+
   'ahmedkhalf/project.nvim',
 
   'machakann/vim-sandwich',
+
+  {'ThePrimeagen/harpoon'},
+
+  {'nvim-telescope/telescope-project.nvim'},
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -110,6 +118,8 @@ require('lazy').setup({
     },
   },
 
+  {'ThePrimeagen/vim-with-me'},
+
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -127,6 +137,8 @@ require('lazy').setup({
   },
 
  {'windwp/nvim-autopairs'},
+
+  {'tpope/vim-rsi'},
 
   'kdheepak/lazygit.nvim',
 
@@ -310,7 +322,17 @@ require('telescope').setup {
       width = 0.7,  -- Set the width of the window to 70% of the editor's width
       height = 0.5,  -- Set the height of the window to 50% of the editor's height
     },
+    color_devicons = true,
+    theme = "ivy",
+    sorting_strategy = "ascending",
+    layout_strategy = "horizontal",
   },
+
+  require('project_nvim').setup {
+    require('telescope').load_extension('projects');
+
+    -- vim.keymap.set('n', '<leader>pf', require'telescope'.extensions.projects.find_project_files, { noremap = true, silent = true })
+  }
 }
 
 -- Enable telescope fzf native, if installed
@@ -397,15 +419,15 @@ require('nvim-treesitter.configs').setup {
         ['[m'] = '@function.outer',
         ['[['] = '@class.outer',
       },
-      goto_previous_end = {
+      goto_previous_en = {
         ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
+        ['[]'] = '@class.outer', 
       },
     },
     swap = {
       enable = true,
       swap_next = {
-        ['<leader>a'] = '@parameter.inner',
+        ['<leaer>a'] = '@parameter.inner',
       },
       swap_previous = {
         ['<leader>A'] = '@parameter.inner',
@@ -445,7 +467,18 @@ local on_attach = function(_, bufnr)
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('<leader>gs', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+  nmap('K', vim.lsp.buf.hover, "Show popup information about symbol at point")
+  nmap('gd', vim.lsp.buf.definition, "Jump to definition for symbol at point")
+  nmap('gt', vim.lsp.buf.type_definition, 'Jump to type definition for symbol at point')
+  nmap('gi', vim.lsp.buf.implementation, 'Jump to implementation for symbol at point')
+  nmap('gR', vim.lsp.buf.rename, 'Rename symbol at point')
+  nmap('ca', vim.lsp.buf.code_action, 'Perform code action at point')
+  nmap('gs', vim.lsp.buf.workspace_symbol, 'Search for workspace symbol')
+  nmap('g]', vim.diagnostic.goto_next, 'Goto next warning/error')
+  nmap('g[', vim.diagnostic.goto_prev, 'Goto next warning/error')
+  nmap('gx', '<cmd> Telescope diagnostics<CR>', 'Search through diagnostics')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -513,6 +546,7 @@ mason_lspconfig.setup_handlers {
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
     }
+
   end
 }
 
@@ -570,16 +604,8 @@ vim.api.nvim_set_keymap('n', '<leader>gg', ':LazyGit<CR>', { noremap = true, sil
 
 vim.o.autochdir = true
 
-vim.api.nvim_set_keymap('c', '<C-a>', '<Home>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('c', '<C-e>', '<End>', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap('n', '<C-a>', '<Home>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-e>', '<End>', { noremap = true, silent = true })
-
 vim.api.nvim_set_keymap('i', '<C-a>', '<Home>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-e>', '<End>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-b>', '<Left>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-f>', '<Right>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-p>', '<Up>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-n>', '<Down>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-d>', '<Del>', { noremap = true, silent = true })
@@ -592,7 +618,44 @@ vim.api.nvim_set_keymap('i', '<C-l>', '<cmd> TmuxNavigationRight<CR>', { noremap
 vim.api.nvim_set_keymap('i', '<C-j>', '<cmd> TmuxNavigationDown<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-k>', '<cmd> TmuxNavigationUp<CR>', { noremap = true, silent = true })
 
---vim.api.nvim_set_keymap('<leader>sa(', '<Plug>(operator-sandwich-add)<Plug>(sandwich-()', 'v', { noremap = false, silent = true })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set("n", "<leader>hk", "<cmd>Telescope keymaps<cr>")
+
+vim.api.nvim_set_keymap('v', '<leader>e', [[y:lua <C-r>"<CR>]], { noremap = true, silent = true })
+
+-- Cursor should stay in place when joining lines
+vim.keymap.set("n", "J", "mzJ`z")
+
+-- Keep cursor in middle of screen when using C-d/C-u
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+vim.api.nvim_set_keymap('n', '<leader>hm', ":lua require('harpoon.mark').add_file()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ht', ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true, silent = true })
+
+require'telescope'.load_extension('project')
+
+function switch_project_and_find_file()
+  -- Trigger the project switcher
+  require'telescope'.extensions.project.project{}
+  
+  -- The above command will change the working directory to the selected project
+  
+  -- Prompt to find a file within the project
+  require'telescope.builtin'.find_files{}
+end
+
+-- TODO: why doesn't this work in the project_nvim.setup()?
 --
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+--
+-- vim.api.nvim_set_keymap('n', '<leader>pb', "<cmd>lua require'telescope'.extensions.projects.browse_project_files()<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>pd', "<cmd>lua require'telescope'.extensions.projects.delete_project()<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>ps', "<cmd>lua require'telescope'.extensions.projects.search_in_project_files()<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>pr', "<cmd>lua require'telescope'.extensions.projects.recent_project_files()<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>pw', "<cmd>lua require'telescope'.extensions.projects.change_working_directory()<cr>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua switch_project_and_find_file()<CR>]], {noremap = true, silent = true})
+
+--vim.api.nvim_set_keymap('<leader>sa(', '<Plug>(operator-sandwich-add)<Plug>(sandwich-()', 'v', { noremap = false, silent = true })

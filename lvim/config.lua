@@ -18,6 +18,12 @@ lvim.plugins = {
       vim.cmd.colorscheme 'onedark'
     end,
   },
+
+  {'mbbill/undotree'},
+
+  {'ThePrimeagen/harpoon'},
+}
+
 }
 
 -- Add 'dofile ("/path/to/this/file")' to ~/.config/lvim/config.lua to use this file

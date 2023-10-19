@@ -10,13 +10,23 @@ lvim.colorscheme = 'gruvbox'
 lvim.plugins = {
   {'tpope/vim-rsi'},
 
+  -- {
+  --   -- Theme inspired by Atom
+  --   'navarasu/onedark.nvim',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme 'onedark'
+  --   end,
+  -- },
+
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
+  'marko-cerovac/material.nvim',
+    priority = 1010,
     config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
+      vim.cmd.colorscheme 'material'
+      vim.g.material_style = "deep ocean"
+      -- require('material').set()
+    end
   },
 
   {'mbbill/undotree'},

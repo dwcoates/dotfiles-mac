@@ -123,6 +123,7 @@
   #
 
 font:
+  size: 13
   normal:
     family: 'DroidSansM Nerd Font'
     style: Regular

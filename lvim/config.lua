@@ -278,3 +278,5 @@ lvim.keys.visual_mode["<leader>L"] = ":SendToLua<CR>"
 
 lvim.builtin.telescope.defaults.layout_config.width = 0.80
 lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
+
+vim.o.autochdir = true

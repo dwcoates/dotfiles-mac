@@ -10,6 +10,8 @@ lvim.colorscheme = 'gruvbox'
 lvim.plugins = {
   {'tpope/vim-rsi'},
 
+  {'dwcoates/project-term'},
+
   -- {
   --   -- Theme inspired by Atom
   --   'navarasu/onedark.nvim',
@@ -284,3 +286,8 @@ vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = t
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true })
 
 vim.o.autochdir = true
+
+local projectterm = require('projectterm').projectterm
+
+lvim.keys.normal_mode["<leader>X"] = ":ProjectTerm<CR>"
+

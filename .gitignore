@@ -2,3 +2,5 @@
 ~/.config/lazygit
 lazygit/state.yml
 lvim/lazy-lock.json
+.quickbuild_commands
+.projectterm_commands

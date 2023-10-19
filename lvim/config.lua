@@ -151,6 +151,7 @@ lvim.keys.normal_mode["[d"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode["]d"] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["<leader>e"] = ":lua vim.diagnostic.open_float()<CR>"
 lvim.keys.normal_mode["<leader>q"] = ":lua vim.diagnostic.setloclist()<CR>"
+lvim.keys.normal_mode["<leader>b"] = ':Telescope current_buffer_fuzzy_find<CR>'
 
 -- local cmp = require'cmp'
 -- cmp.setup({

@@ -121,20 +121,31 @@ lvim.plugins = {
 
 lvim.keys.normal_mode["<leader>sP"] = ":Telescope projects<CR>"
 
-vim.api.nvim_set_keymap('v', '<leader>e', [[y:lua <C-r>"<CR>]], { noremap = true, silent = true })
-
-
 -- Keep cursor in middle of screen when using C-d/C-u
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
+lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
+
+-- Move selected lines down or up in visual mode
+lvim.keys.visual_mode["J"] = ":m '>+1<CR>gv=gv"
+lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
+
+-- Telescope keybinding to find recently opened files
+lvim.keys.normal_mode["<leader>r"] = ":Telescope recentfiles<CR>"
+lvim.keys.normal_mode["<leader>x"] = ":Telescope buffers<CR>"
+-- lvim.keys.visual_mode["<leader>x"] = [[":lua <C-r>"<CR>"]] --FIXME: This doesn't work
+
 
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+lvim.keys.normal_mode["[d"] = ":lua vim.diagnostic.goto_prev()<CR>"
+lvim.keys.normal_mode["]d"] = ":lua vim.diagnostic.goto_next()<CR>"
+lvim.keys.normal_mode["<leader>e"] = ":lua vim.diagnostic.open_float()<CR>"
+lvim.keys.normal_mode["<leader>q"] = ":lua vim.diagnostic.setloclist()<CR>"
 
+-- Harpoon keymaps
+lvim.keys.normal_mode["<leader>hm"] = ":lua require('harpoon.mark').add_file()<CR>"
+lvim.keys.normal_mode["<leader>ht"] = ":lua require('harpoon.ui').toggle_quick_menu()<CR>"
+-- require('harpoon.ui').swap()
 
 -- Add 'dofile ("/path/to/this/file")' to ~/.config/lvim/config.lua to use this file
 -- https://fnune.com/2021/11/20/nuking-most-of-my-vimrc-and-just-using-lunarvim/

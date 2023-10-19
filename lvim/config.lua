@@ -134,13 +134,21 @@ lvim.keys.normal_mode["<leader>r"] = ":Telescope recentfiles<CR>"
 lvim.keys.normal_mode["<leader>x"] = ":Telescope buffers<CR>"
 -- lvim.keys.visual_mode["<leader>x"] = [[":lua <C-r>"<CR>"]] --FIXME: This doesn't work
 
-
-
 -- Diagnostic keymaps
 lvim.keys.normal_mode["[d"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode["]d"] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["<leader>e"] = ":lua vim.diagnostic.open_float()<CR>"
 lvim.keys.normal_mode["<leader>q"] = ":lua vim.diagnostic.setloclist()<CR>"
+
+-- local cmp = require'cmp'
+-- cmp.setup({
+--   mapping = {
+--     ['<CR>'] = cmp.mapping.confirm({
+--       behavior = cmp.ConfirmBehavior.Insert,
+--       select = true,
+--     })
+--   },
+-- })
 
 -- Harpoon keymaps
 lvim.keys.normal_mode["<leader>hm"] = ":lua require('harpoon.mark').add_file()<CR>"
@@ -238,7 +246,6 @@ end
 vim.cmd("command! -range SendToLua lua send_to_lua()")
 
 lvim.keys.visual_mode["<leader>L"] = ":SendToLua<CR>"
-
 
 lvim.builtin.telescope.defaults.layout_config.width = 0.80
 lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75

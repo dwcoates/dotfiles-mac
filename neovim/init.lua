@@ -658,4 +658,7 @@ end
 
 vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua switch_project_and_find_file()<CR>]], {noremap = true, silent = true})
 
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+
 --vim.api.nvim_set_keymap('<leader>sa(', '<Plug>(operator-sandwich-add)<Plug>(sandwich-()', 'v', { noremap = false, silent = true })

@@ -69,6 +69,19 @@ lvim.plugins = {
   { 'glepnir/dashboard-nvim' },
 }
 
+vim.g.material_style = "darker" -- Choose your style: 'darker', 'lighter', 'palenight', 'oceanic', etc.
+
+-- require('material').setup({
+--   contrast = true,
+--   borders = false,
+--   -- ... (other configurations)
+-- })
+
+-- Then set the colorscheme
+--vim.cmd[[colorscheme material]]
+
+
+
 -- require('nvim-treesitter.config').setup {
 --   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
 

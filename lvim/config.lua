@@ -22,15 +22,125 @@ lvim.plugins = {
   {'mbbill/undotree'},
 
   {'ThePrimeagen/harpoon'},
+
+  -- NOTE: This is where your plugins related to LSP can be installed.
+  --  The configuration is done below. Search for lspconfig to find it below.
+  {
+    -- LSP Configuration & Plugins
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      -- Automatically install LSPs to stdpath for neovim
+      { 'williamboman/mason.nvim', config = true },
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Useful status updates for LSP
+      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+
+      -- Additional lua configuration, makes nvim stuff amazing!
+      'folke/neodev.nvim',
+    },
+  },
+
+  {
+    'christoomey/vim-tmux-navigator',
+    event = 'VimEnter',  -- Load on VimEnter event
+  },
+
+  {
+    -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    build = ':TSUpdate',
+  },
 }
 
-}
+-- require('nvim-treesitter.config').setup {
+--   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+
+--   auto_install = true,
+
+--   highlight = { enable = true },
+--   indent = { enable = true },
+--   incremental_selection = {
+--     enable = true,
+--     keymaps = {
+--       init_selection = '<c-space>',
+--       node_incremental = '<c-space>',
+--       scope_incremental = '<c-s>',
+--       node_decremental = '<M-space>',
+--     },
+--   },
+--   textobjects = {
+--     select = {
+--       enable = true,
+--       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+--       keymaps = {
+--         -- You can use the capture groups defined in textobjects.scm
+--         ['aa'] = '@parameter.outer',
+--         ['ia'] = '@parameter.inner',
+--         ['af'] = '@function.outer',
+--         ['if'] = '@function.inner',
+--         ['ac'] = '@class.outer',
+--         ['ic'] = '@class.inner',
+--       },
+--     },
+--     move = {
+--       enable = true,
+--       set_jumps = true, -- whether to set jumps in the jumplist
+--       goto_next_start = {
+--         [']m'] = '@function.outer',
+--         [']]'] = '@class.outer',
+--       },
+--       goto_next_end = {
+--         [']M'] = '@function.outer',
+--         [']['] = '@class.outer',
+--       },
+--       goto_previous_start = {
+--         ['[m'] = '@function.outer',
+--         ['[['] = '@class.outer',
+--       },
+--       goto_previous_en = {
+--         ['[M'] = '@function.outer',
+--         ['[]'] = '@class.outer', 
+--       },
+--     },
+--     swap = {
+--       enable = true,
+--       swap_next = {
+--         ['<leaer>a'] = '@parameter.inner',
+--       },
+--       swap_previous = {
+--         ['<leader>A'] = '@parameter.inner',
+--       },
+--     },
+--   },
+-- }
+
+lvim.keys.normal_mode["<leader>sP"] = ":Telescope projects<CR>"
+
+vim.api.nvim_set_keymap('v', '<leader>e', [[y:lua <C-r>"<CR>]], { noremap = true, silent = true })
+
+
+-- Keep cursor in middle of screen when using C-d/C-u
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
 
 -- Add 'dofile ("/path/to/this/file")' to ~/.config/lvim/config.lua to use this file
 -- https://fnune.com/2021/11/20/nuking-most-of-my-vimrc-and-just-using-lunarvim/
 vim.opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
-vim.opt.hidden = false -- required to keep multiple buffers and open multiple buffers
+vim.opt.hidden = true -- required to keep multiple buffers and open multiple buffers
 vim.opt.hlsearch = false -- highlight all matches on previous search pattern
 vim.opt.mouse = "a" -- allow the mouse to be used in neovim
 vim.opt.smartcase = true -- smart case

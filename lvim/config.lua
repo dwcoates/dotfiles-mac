@@ -153,6 +153,9 @@ lvim.keys.normal_mode["<leader>e"] = ":lua vim.diagnostic.open_float()<CR>"
 lvim.keys.normal_mode["<leader>q"] = ":lua vim.diagnostic.setloclist()<CR>"
 lvim.keys.normal_mode["<leader>b"] = ':Telescope current_buffer_fuzzy_find<CR>'
 
+
+lvim.keys.normal_mode["gR"] = ":Telescope lsp_references<CR>"
+
 -- local cmp = require'cmp'
 -- cmp.setup({
 --   mapping = {

@@ -213,3 +213,30 @@ lvim.builtin.which_key.mappings["n"] = { "j/\\V\\(<<<<\\)\\|\\(====\\)\\|\\(||||
 lvim.builtin.which_key.mappings["N"] = { "k?\\V\\(<<<<\\)\\|\\(====\\)\\|\\(||||\\)<CR>", "which_key_ignore" }
 lvim.lsp.buffer_mappings.normal_mode['gh'] = { vim.lsp.buf.hover, "LSP Hover" }
 lvim.lsp.installer.setup.automatic_installation = true
+-- Define a function to execute the selected text as Lua code
+function send_to_lua()
+    -- Yank the selected text into the unnamed register
+    vim.cmd('y')
+    
+    -- Get the yanked text from the unnamed register
+    local code = vim.fn.getreg('"')
+    
+    -- Load and execute the code
+    local func, err = load(code)
+    if func then
+        local ok, result = pcall(func)
+        if ok then
+            print("Result:", result)
+        else
+            print("Execution error:", result)
+        end
+    else
+        print("Load error:", err)
+    end
+end
+
+vim.cmd("command! -range SendToLua lua send_to_lua()")
+
+lvim.keys.visual_mode["<leader>L"] = ":SendToLua<CR>"
+
+

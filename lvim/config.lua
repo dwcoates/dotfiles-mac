@@ -65,6 +65,8 @@ lvim.plugins = {
     },
     build = ':TSUpdate',
   },
+
+  { 'glepnir/dashboard-nvim' },
 }
 
 -- require('nvim-treesitter.config').setup {

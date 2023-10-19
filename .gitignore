@@ -1,0 +1,4 @@
+.DS_Store
+~/.config/lazygit
+lazygit/state.yml
+lvim/lazy-lock.json

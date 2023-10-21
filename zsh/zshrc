@@ -46,6 +46,9 @@ export cm=${CHESSCOM_PATH}/cee-microservice
 export dt=${WORKSPACE_PATH}/dotfiles
 export ei=${CHESSCOM_PATH}/explanation-engine-interface
 export pt=${WORKSPACE_PATH}/lua/project-term
+export cp=${CHESSCOM_PATH}/ceac-clusters-proxy
+export df=${CHESSCOM_PATH}/definitions
+export pl=${CHESSCOM_PATH}/platform
 
 # Python
 export PYTHONPATH="${PYTHON_PATH}:${CEE_INTERFACE_PATH}/python"

@@ -6,6 +6,8 @@ lvim.plugins = {
 
   {"justinmk/vim-sneak"},
 
+  {"tpope/vim-surround"},
+
   {'dwcoates/project-term'},
 
   {

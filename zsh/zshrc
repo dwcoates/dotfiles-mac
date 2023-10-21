@@ -100,5 +100,5 @@ if [ -f '/Users/dodgecoates/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users
 
 export PATH="$HOME/.local/bin":$PATH
 export EDITOR=lvim
-alias x=${dt}/alacritty/startup.sh 
+alias x=${dt}/tmux/startup.sh 
 alias tk="tmux kill-session"

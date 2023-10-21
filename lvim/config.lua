@@ -1,6 +1,4 @@
 -- Read the docs: https://www.lunarvim.org/docs/configuration
--- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
--- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
 lvim.plugins = {
@@ -9,15 +7,6 @@ lvim.plugins = {
   {"justinmk/vim-sneak"},
 
   {'dwcoates/project-term'},
-
-  -- {
-  --   -- Theme inspired by Atom
-  --   'navarasu/onedark.nvim',
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme 'onedark'
-  --   end,
-  -- },
 
   {
   'marko-cerovac/material.nvim',
@@ -69,80 +58,7 @@ lvim.plugins = {
   { 'glepnir/dashboard-nvim' },
 }
 
-vim.g.material_style = "darker" -- Choose your style: 'darker', 'lighter', 'palenight', 'oceanic', etc.
-
--- require('material').setup({
---   contrast = true,
---   borders = false,
---   -- ... (other configurations)
--- })
-
--- Then set the colorscheme
---vim.cmd[[colorscheme material]]
-
-
-
--- require('nvim-treesitter.config').setup {
---   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
-
---   auto_install = true,
-
---   highlight = { enable = true },
---   indent = { enable = true },
---   incremental_selection = {
---     enable = true,
---     keymaps = {
---       init_selection = '<c-space>',
---       node_incremental = '<c-space>',
---       scope_incremental = '<c-s>',
---       node_decremental = '<M-space>',
---     },
---   },
---   textobjects = {
---     select = {
---       enable = true,
---       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
---       keymaps = {
---         -- You can use the capture groups defined in textobjects.scm
---         ['aa'] = '@parameter.outer',
---         ['ia'] = '@parameter.inner',
---         ['af'] = '@function.outer',
---         ['if'] = '@function.inner',
---         ['ac'] = '@class.outer',
---         ['ic'] = '@class.inner',
---       },
---     },
---     move = {
---       enable = true,
---       set_jumps = true, -- whether to set jumps in the jumplist
---       goto_next_start = {
---         [']m'] = '@function.outer',
---         [']]'] = '@class.outer',
---       },
---       goto_next_end = {
---         [']M'] = '@function.outer',
---         [']['] = '@class.outer',
---       },
---       goto_previous_start = {
---         ['[m'] = '@function.outer',
---         ['[['] = '@class.outer',
---       },
---       goto_previous_en = {
---         ['[M'] = '@function.outer',
---         ['[]'] = '@class.outer', 
---       },
---     },
---     swap = {
---       enable = true,
---       swap_next = {
---         ['<leaer>a'] = '@parameter.inner',
---       },
---       swap_previous = {
---         ['<leader>A'] = '@parameter.inner',
---       },
---     },
---   },
--- }
+vim.g.material_style = "deep ocean" -- Choose your style: 'darker', 'lighter', 'palenight', 'oceanic', etc.
 
 lvim.keys.normal_mode["<leader>sP"] = ":Telescope projects<CR>"
 
@@ -166,27 +82,15 @@ lvim.keys.normal_mode["<leader>e"] = ":lua vim.diagnostic.open_float()<CR>"
 lvim.keys.normal_mode["<leader>q"] = ":lua vim.diagnostic.setloclist()<CR>"
 lvim.keys.normal_mode["<leader>b"] = ':Telescope current_buffer_fuzzy_find<CR>'
 
-
 lvim.keys.normal_mode["gR"] = ":Telescope lsp_references<CR>"
-
--- local cmp = require'cmp'
--- cmp.setup({
---   mapping = {
---     ['<CR>'] = cmp.mapping.confirm({
---       behavior = cmp.ConfirmBehavior.Insert,
---       select = true,
---     })
---   },
--- })
 
 -- Harpoon keymaps
 lvim.keys.normal_mode["<leader>hm"] = ":lua require('harpoon.mark').add_file()<CR>"
 lvim.keys.normal_mode["<leader>ht"] = ":lua require('harpoon.ui').toggle_quick_menu()<CR>"
--- require('harpoon.ui').swap()
 
 -- Add 'dofile ("/path/to/this/file")' to ~/.config/lvim/config.lua to use this file
 -- https://fnune.com/2021/11/20/nuking-most-of-my-vimrc-and-just-using-lunarvim/
-vim.opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
+vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
 vim.opt.hidden = true -- required to keep multiple buffers and open multiple buffers
 vim.opt.hlsearch = false -- highlight all matches on previous search pattern
@@ -301,8 +205,11 @@ function toggle_lazygit()
     hidden = true,
     direction = 'float',
     float_opts = {
-      border = 'curved'
+      border = 'curved',
+      width = 220,
+      height = 60
     },
+-- require('harpoon.ui').swap()
     on_open = function(term)
       vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>lua toggle_lazygit()<CR>', { noremap = true, silent = true })
     end,

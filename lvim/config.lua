@@ -293,3 +293,5 @@ require('projectterm')
 
 lvim.keys.normal_mode["<leader>X"] = ":ProjectTerm<CR>"
 
+vim.api.nvim_set_keymap('n', '<leader>km', '<cmd>lua require("telescope.builtin").keymaps({ layout_config = { width = 0.7, height = 0.5 }, color_devicons = true, sorting_strategy = "ascending" })<CR>', { noremap = true, silent = true, desc = "Show keymaps" })
+

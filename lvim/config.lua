@@ -283,7 +283,6 @@ lvim.keys.visual_mode["<leader>L"] = ":SendToLua<CR>"
 lvim.builtin.telescope.defaults.layout_config.width = 0.60
 lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
 
-
 vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true })
 
@@ -298,4 +297,24 @@ vim.api.nvim_set_keymap('n', '<leader>km', '<cmd>lua require("telescope.builtin"
 -- lvim.builtin.which.key_mappings["d"] = ":echo 'hello, world'"
 
 lvim.builtin.which_key.mappings["s"]["r"] = { ":Telescope lsp_references<CR>", "Symbol References" }
+
+function toggle_lazygit()
+  local Terminal = require('toggleterm.terminal').Terminal
+  local lazygit = Terminal:new({
+    cmd = "lazygit",
+    hidden = true,
+    direction = 'float',
+    float_opts = {
+      border = 'curved'
+    },
+    on_open = function(term)
+      vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>lua toggle_lazygit()<CR>', { noremap = true, silent = true })
+    end,
+  })
+  lazygit:toggle()
+end
+vim.cmd("command! LazyGit lua toggle_lazygit()")
+lvim.builtin.which_key.mappings["g"]["g"] = { ":LazyGit<CR>", "LazyGit Status" }
+
+lvim.builtin.which_key.mappings["f"] = { ":Telescope git_files<CR>", "Search Project Files" }
 

@@ -38,11 +38,14 @@ alias v=lvim
 export z=$HOME/.zshrc
 export ee=$CEE_PATH
 export n=$HOME/.config/nvim/init.lua 
+export l=$HOME/.config/lvim/config.lua 
 export cl=${CHESSCOM_PATH}/clue
 export ce=${CHESSCOM_PATH}/ceac
 export es=${CHESSCOM_PATH}/engine-services
 export cm=${CHESSCOM_PATH}/cee-microservice
 export dt=${WORKSPACE_PATH}/dotfiles
+export ei=${CHESSCOM_PATH}/explanation-engine-interface
+export pt=${WORKSPACE_PATH}/lua/project-term
 
 # Python
 export PYTHONPATH="${PYTHON_PATH}:${CEE_INTERFACE_PATH}/python"

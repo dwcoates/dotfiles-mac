@@ -23,6 +23,8 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
+window:
+  startup_mode: Maximized
 #window:
   # Window dimensions (changes require restart)
   #

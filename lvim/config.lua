@@ -289,7 +289,7 @@ vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, sile
 
 vim.o.autochdir = true
 
-local projectterm = require('projectterm').projectterm
+require('projectterm')
 
 lvim.keys.normal_mode["<leader>X"] = ":ProjectTerm<CR>"
 

@@ -3,10 +3,6 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
-
-
-lvim.colorscheme = 'gruvbox'
-
 lvim.plugins = {
   {'tpope/vim-rsi'},
 

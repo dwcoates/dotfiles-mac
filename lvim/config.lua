@@ -10,6 +10,8 @@ lvim.colorscheme = 'gruvbox'
 lvim.plugins = {
   {'tpope/vim-rsi'},
 
+  {"justinmk/vim-sneak"},
+
   {'dwcoates/project-term'},
 
   -- {

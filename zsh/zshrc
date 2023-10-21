@@ -49,6 +49,7 @@ export cp=${CHESSCOM_PATH}/ceac-clusters-proxy
 export df=${CHESSCOM_PATH}/definitions
 export pl=${CHESSCOM_PATH}/platform
 alias v="$dt/zsh/lvim-git.sh"
+export pe=${WORKSPACE_PATH}/lua/project-session
 
 # Python
 export PYTHONPATH="${PYTHON_PATH}:${CEE_INTERFACE_PATH}/python"

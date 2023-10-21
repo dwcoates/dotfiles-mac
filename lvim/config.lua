@@ -9,6 +9,7 @@ lvim.plugins = {
   {"tpope/vim-surround"},
 
   {'dwcoates/project-term'},
+  {'dwcoates/project-session'},
 
   {
   'marko-cerovac/material.nvim',
@@ -191,6 +192,7 @@ vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, sile
 vim.o.autochdir = true
 
 require('projectterm')
+require('project-session')
 
 lvim.keys.normal_mode["<leader>X"] = ":ProjectTerm<CR>"
 
@@ -223,12 +225,3 @@ lvim.builtin.which_key.mappings["g"]["g"] = { ":LazyGit<CR>", "LazyGit Status" }
 
 lvim.builtin.which_key.mappings["f"] = { ":Telescope git_files<CR>", "Search Project Files" }
 
--- Save session on file save.
-vim.cmd [[
-  command! SaveSession execute 'mksession! ' . system('echo -n "$(git rev-parse --show-toplevel)/.nvim-session.vim"')
-  autocmd BufWritePost * :SaveSession
-]]
-
--- vim.cmd [[
---   command! ClearSession bufdo! bd | SaveSession | execute 'source ' . system('echo -n "$(git rev-parse --show-toplevel)/.nvim-session.vim"')
--- ]]

@@ -4,13 +4,7 @@ SESSION="workspace"
 
 tmux new-session -d -s $SESSION -c ~ -n scratch # Window 1
 
-## Automatic session saving & loading depends on the following nvim configuration:
-#
-# vim.cmd [[
-#   command! SaveSession execute 'mksession! ' . system('echo -n "$(git rev-parse --show-toplevel)/.nvim-session.vim"')
-#   autocmd BufWritePost * :SaveSession
-# ]]
-#
+## NOTE: Automatic session saving & loading depends on package {dwcoates/project-session}:
 
 function add_window {
     local name=$1
@@ -37,5 +31,6 @@ function add_window {
   add_window 'game-state-cache' "${CHESSCOM_PATH}/gametree" 10 
   add_window 'ceac-clusters-proxy' $cp 11
   add_window 'project-term' $pt 12
+  add_window 'project-session' $pe 13
 
   tmux attach -t $SESSION

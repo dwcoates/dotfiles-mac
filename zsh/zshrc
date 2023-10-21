@@ -34,7 +34,6 @@ export PATH="/Users/dodgecoates/workspace/ChessCom/clue/.bin/zig":$PATH
 export PATH="$HOME/src/zls/zig-out/bin":$PATH
 export PATH="$HOME/src/nvim/bin":$PATH
 
-alias v=lvim
 export z=$HOME/.zshrc
 export ee=$CEE_PATH
 export n=$HOME/.config/nvim/init.lua 
@@ -49,6 +48,7 @@ export pt=${WORKSPACE_PATH}/lua/project-term
 export cp=${CHESSCOM_PATH}/ceac-clusters-proxy
 export df=${CHESSCOM_PATH}/definitions
 export pl=${CHESSCOM_PATH}/platform
+alias v="$dt/zsh/lvim-git.sh"
 
 # Python
 export PYTHONPATH="${PYTHON_PATH}:${CEE_INTERFACE_PATH}/python"

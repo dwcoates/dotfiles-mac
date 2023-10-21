@@ -223,3 +223,12 @@ lvim.builtin.which_key.mappings["g"]["g"] = { ":LazyGit<CR>", "LazyGit Status" }
 
 lvim.builtin.which_key.mappings["f"] = { ":Telescope git_files<CR>", "Search Project Files" }
 
+-- Save session on file save.
+vim.cmd [[
+  command! SaveSession execute 'mksession! ' . system('echo -n "$(git rev-parse --show-toplevel)/.nvim-session.vim"')
+  autocmd BufWritePost * :SaveSession
+]]
+
+-- vim.cmd [[
+--   command! ClearSession bufdo! bd | SaveSession | execute 'source ' . system('echo -n "$(git rev-parse --show-toplevel)/.nvim-session.vim"')
+-- ]]

@@ -278,4 +278,14 @@ lvim.builtin.cmp.setup = {
   },
 }
 
+require('lspconfig').bufls.setup {}
+
+require('lspconfig').clangd.setup {
+    filetypes = { "c", "cpp" },
+    cmd = {
+        "clangd",
+        "--enable-config",
+        "--clang-tidy",
+    }
+}
 vim.api.nvim_set_keymap('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })

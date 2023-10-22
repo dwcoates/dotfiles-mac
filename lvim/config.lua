@@ -83,9 +83,7 @@ lvim.keys.normal_mode["[d"] = ":lua vim.diagnostic.goto_prev()<CR>"
 lvim.keys.normal_mode["]d"] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["<leader>e"] = ":lua vim.diagnostic.open_float()<CR>"
 lvim.keys.normal_mode["<leader>q"] = ":lua vim.diagnostic.setloclist()<CR>"
-lvim.keys.normal_mode["<leader>b"] = ':Telescope current_buffer_fuzzy_find<CR>'
 
-lvim.keys.normal_mode["gR"] = ":Telescope lsp_references<CR>"
 
 -- Harpoon keymaps
 lvim.keys.normal_mode["<leader>hm"] = ":lua require('harpoon.mark').add_file()<CR>"
@@ -144,21 +142,20 @@ lvim.builtin.which_key.mappings["h"] = { "<cmd>set hlsearch!<CR>", "Toggle Highl
 lvim.format_on_save = {
   pattern = "*.lua"
 }
---TODO: Detect os, then use + clipboard on linux
--- Move packer from leaderp to leaderP
-lvim.builtin.which_key.mappings["P"] = lvim.builtin.which_key.mappings["p"]
-lvim.builtin.which_key.mappings["y"] = { '"*y', "Copy to system clipboard" }
-lvim.builtin.which_key.vmappings["y"] = { '"*y', "Copy to system clipboard" }
-lvim.builtin.which_key.mappings["p"] = { '"*p', "Paste from system clipboard" }
+
 -- Go to next merge conflict marker
 -- Currently >>>> is not included because it occurs in template-heavy C++ code
 -- Need to use <BAR> since vim sees | as command separator when parsing .vimrc
 lvim.builtin.which_key.mappings["n"] = { "j/\\V\\(<<<<\\)\\|\\(====\\)\\|\\(||||\\)<CR>", "which_key_ignore" }
 lvim.builtin.which_key.mappings["N"] = { "k?\\V\\(<<<<\\)\\|\\(====\\)\\|\\(||||\\)<CR>", "which_key_ignore" }
-lvim.lsp.buffer_mappings.normal_mode['gh'] = { vim.lsp.buf.hover, "LSP Hover" }
-lvim.lsp.installer.setup.automatic_installation = true
+
+lvim.lsp.installer.setup.automatic_servers_installation = true
+
+lvim.builtin.which_key.mappings["/"] = { ":Telescope current_buffer_fuzzy_find<CR>", "Search buffer text" }
+lvim.builtin.which_key.mappings["?"] = { ":Telescope lsp_document_symbols<CR>", "Search buffer symbols" }
+
 -- Define a function to execute the selected text as Lua code
-function send_to_lua()
+local function send_to_lua()
     -- Yank the selected text into the unnamed register
     vim.cmd('y')
     
@@ -181,13 +178,16 @@ end
 
 vim.cmd("command! -range SendToLua lua send_to_lua()")
 
-lvim.keys.visual_mode["<leader>L"] = ":SendToLua<CR>"
-
 lvim.builtin.telescope.defaults.layout_config.width = 0.60
 lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
 
 vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true })
+
+-- FIXME:
+-- vim.builtin.lsp.mappings["g"]["d"] = { ':echo "hello, world"<CR>', "Goto Definon!" }
+
+vim.api.nvim_set_keymap('n', '<leader>t', ':t<CR>', { noremap = true, silent = true })
 
 vim.o.autochdir = true
 

@@ -268,3 +268,12 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+lvim.builtin.cmp.setup = {
+  enabled = true,
+  preselect = vim.inspect(require('cmp').PreselectMode.Item),
+  autocomplete = true,
+  mapping = {
+    confirm = "<CR>",
+  },
+}

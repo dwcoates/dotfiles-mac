@@ -277,3 +277,5 @@ lvim.builtin.cmp.setup = {
     confirm = "<CR>",
   },
 }
+
+vim.api.nvim_set_keymap('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })

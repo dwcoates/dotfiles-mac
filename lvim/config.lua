@@ -111,12 +111,6 @@ vim.cmd([[
   " Make j & k behave as expected in line wrap mode
   nnoremap j gj
   nnoremap k gk
-  " H and L go to the top and bottom of the screen. This makes them play nicely 
-  " with scrolloff.
-  nnoremap H H7k
-  vnoremap H H7k
-  nnoremap L L7j
-  vnoremap L L7j
   " Map enter to ':' (Begin and end commands with the same key) (except in the
   " quickfix window)
   nnoremap <expr> <CR> &buftype ==# 'quickfix' ? "\<CR>" : ':'
@@ -288,4 +282,13 @@ require('lspconfig').clangd.setup {
         "--clang-tidy",
     }
 }
+
 vim.api.nvim_set_keymap('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_exec([[
+augroup MyCustomHighlighting
+    autocmd!
+    autocmd VimEnter * hi Visual guifg=#b6c0cf guibg=#313d4f
+    autocmd VimEnter * hi Search guifg=#b6c0cf guibg=#080833
+augroup END
+]], false)

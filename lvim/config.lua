@@ -75,7 +75,7 @@ lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
 
 -- Telescope keybinding to find recently opened files
 lvim.keys.normal_mode["<leader>r"] = ":Telescope recentfiles<CR>"
-lvim.keys.normal_mode["<leader>x"] = ":Telescope buffers<CR>"
+lvim.keys.normal_mode["<leader>x"] = ":Telescope buffers<CR>i"
 -- lvim.keys.visual_mode["<leader>x"] = [[":lua <C-r>"<CR>"]] --FIXME: This doesn't work
 
 -- Diagnostic keymaps
@@ -285,10 +285,22 @@ require('lspconfig').clangd.setup {
 
 vim.api.nvim_set_keymap('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })
 
-vim.api.nvim_exec([[
-augroup MyCustomHighlighting
-    autocmd!
-    autocmd VimEnter * hi Visual guifg=#b6c0cf guibg=#313d4f
-    autocmd VimEnter * hi Search guifg=#b6c0cf guibg=#080833
-augroup END
-]], false)
+---FIXME: something interferring with this. Code runs, but highlight isn't changed. Hacky solution is to use `BufEnter` instead of `VimEnter`. 
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	pattern = { "*" },
+	callback = function()
+    vim.cmd('hi Visual guifg=#b6c0cf guibg=#313d4f')
+    vim.cmd('hi Search guifg=#b6c0cf guibg=#313d4f')
+	end,
+})
+
+-- vim.api.nvim_exec([[
+-- augroup MyCustomHighlighting
+--     autocmd!
+--     autocmd VimEnter * hi Visual guifg=#02021c guibg=#656599
+-- augroup END
+--     autocmd VimEnter * hi Search guifg=#b6c0cf guibg=#080833
+-- ]], false)
+
+lvim.builtin.which_key.mappings["q"] = { ":qa<CR>" }
+

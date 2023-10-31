@@ -84,9 +84,11 @@ git:
   parseEmoji: false
 os:
   copyToClipboardCmd: '' # See 'Custom Command for Copying to Clipboard' section
-  edit: ''
-  editPreset: 'nvim' # see 'Configuring File Editing' section
-  editAtLine: ''
+  edit: 'lvim {{filename}}'
+  editAtLine: 'lvim -c ":{{line}}" {{filename}}' 
+  # edit: ''
+  # editPreset: 'nvim' # see 'Configuring File Editing' section
+  # editAtLine: ''
   editAtLineAndWait: ''
   open: ''
   openLink: ''
@@ -101,7 +103,7 @@ confirmOnQuit: false
 quitOnTopLevelReturn: false
 disableStartupPopups: false
 notARepository: 'prompt' # one of: 'prompt' | 'create' | 'skip' | 'quit'
-promptToReturnFromSubprocess: true # display confirmation when subprocess terminates
+promptToReturnFromSubprocess: false # display confirmation when subprocess terminates
 keybinding:
   universal:
     quit: 'q'

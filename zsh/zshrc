@@ -85,6 +85,8 @@ export FZF_DEFAULT_OPTS='--height 20% --layout=reverse --border'
 
 PATH=$PATH:$HOME/bin
 
+export CLICOLOR=true
+
 ################
 ### Desktop
 ################

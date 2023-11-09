@@ -277,24 +277,23 @@ lvim.builtin.cmp.setup = {
 
 require('lspconfig').bufls.setup {}
 
-require('lspconfig').clangd.setup {
-    filetypes = { "c", "cpp" },
-    cmd = {
-        "clangd",
-        "--enable-config",
-        "--clang-tidy",
-    }
-}
+--FIXME: this breaks goto-xyz bindings. Is this even useful? Delete? 
+-- require('lspconfig').clangd.setup {
+--   filetypes = { "c", "cpp" },
+--   cmd = {
+--     "clangd",
+--     "--enable-config",
+--     "--clang-tidy",
+--   }
+-- }
 
-vim.api.nvim_set_keymap('n', '<CR>', ':noh<CR>', { noremap = true, silent = true })
-
----FIXME: something interferring with this. Code runs, but highlight isn't changed. Hacky solution is to use `BufEnter` instead of `VimEnter`. 
+---FIXME: something interferring with this. Code runs, but highlight isn't changed. Hacky solution is to use `BufEnter` instead of `VimEnter`.
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	pattern = { "*" },
-	callback = function()
+  pattern = { "*" },
+  callback = function()
     vim.cmd('hi Visual guifg=#b6c0cf guibg=#313d4f')
     vim.cmd('hi Search guifg=#b6c0cf guibg=#313d4f')
-	end,
+  end,
 })
 
 -- vim.api.nvim_exec([[

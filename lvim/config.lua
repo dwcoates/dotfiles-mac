@@ -65,6 +65,9 @@ vim.g.material_style = "deep ocean" -- Choose your style: 'darker', 'lighter', '
 
 lvim.keys.normal_mode["<leader>sP"] = ":Telescope projects<CR>"
 
+-- turn off highlighting from a search after escape
+vim.api.nvim_set_keymap('n', '<Esc>', '<Esc>:noh<CR>', { noremap = true, silent = true })
+
 -- Keep cursor in middle of screen when using C-d/C-u
 lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
 lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"

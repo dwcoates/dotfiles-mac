@@ -87,6 +87,24 @@ lvim.keys.normal_mode["]d"] = ":lua vim.diagnostic.goto_next()<CR>"
 lvim.keys.normal_mode["<leader>e"] = ":lua vim.diagnostic.open_float()<CR>"
 lvim.keys.normal_mode["<leader>q"] = ":lua vim.diagnostic.setloclist()<CR>"
 
+lvim.builtin.which_key.mappings["s"]["r"] = { ":Telescope lsp_references<CR>", "Symbol References" }
+
+vim.api.nvim_create_augroup("AutoFormatAfterSurround", { clear = true })
+
+vim.api.nvim_create_autocmd({"TextChanged", "InsertLeave"}, {
+    group = "AutoFormatAfterSurround",
+    callback = function()
+        -- Check if LSP is attached and formatting is supported
+        local clients = vim.lsp.buf_get_clients()
+        for _, client in pairs(clients) do
+            if client.resolved_capabilities and client.resolved_capabilities.document_formatting then
+                -- Trigger LSP formatting
+                vim.lsp.buf.formatting_sync()
+                break
+            end
+        end
+    end
+})
 
 -- Harpoon keymaps
 lvim.keys.normal_mode["<leader>hm"] = ":lua require('harpoon.mark').add_file()<CR>"

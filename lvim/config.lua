@@ -77,8 +77,10 @@ lvim.keys.visual_mode["J"] = ":m '>+1<CR>gv=gv"
 lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
 
 -- Telescope keybinding to find recently opened files
+lvim.keys.normal_mode["<leader>x"] = ":Telescope buffers<CR>"
 lvim.keys.normal_mode["<leader>r"] = ":Telescope recentfiles<CR>"
-lvim.keys.normal_mode["<leader>x"] = ":Telescope buffers<CR>i"
+
+-- lvim.builtin.which_key.mappings["r"] = { ":Telescope recentfiles<CR>", "Recent Files" } --FIXME: should replace impl above
 -- lvim.keys.visual_mode["<leader>x"] = [[":lua <C-r>"<CR>"]] --FIXME: This doesn't work
 
 -- Diagnostic keymaps

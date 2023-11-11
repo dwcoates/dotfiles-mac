@@ -349,3 +349,32 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 
 lvim.builtin.which_key.mappings["q"] = { ":qa<CR>" }
 
+-- TreeSitter text objects
+local ts = lvim.builtin.treesitter
+ts.textobjects = {
+    select = {
+        enable = true,
+        lookahead = true,  -- Automatically jump forward to textobj, similar to targets.vim
+        keymaps = {
+            -- Use the capture groups defined in textobjects.scm
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["as"] = "@class.outer",
+            ["is"] = "@class.inner",
+            ["ai"] = "@conditional.outer",
+            ["ii"] = "@conditional.inner",
+            ["al"] = "@loop.outer",
+            ["il"] = "@loop.inner",
+            ["ab"] = "@block.outer",
+            ["ib"] = "@block.inner",
+            ["acm"] = "@comment.outer",
+            ["ia"] = "@parameter.inner",
+            ["aa"] = "@parameter.inner",
+        },
+    },
+    swap = {
+        enable = false,
+        -- swap_next = textobj_swap_keymaps,
+    },
+}
+

@@ -12,7 +12,7 @@ lvim.plugins = {
   {'dwcoates/project-session'},
 
   {
-  'marko-cerovac/material.nvim',
+    'marko-cerovac/material.nvim',
     priority = 1010,
     config = function()
       vim.cmd.colorscheme 'material'
@@ -94,18 +94,18 @@ lvim.builtin.which_key.mappings["s"]["r"] = { ":Telescope lsp_references<CR>", "
 vim.api.nvim_create_augroup("AutoFormatAfterSurround", { clear = true })
 
 vim.api.nvim_create_autocmd({"TextChanged", "InsertLeave"}, {
-    group = "AutoFormatAfterSurround",
-    callback = function()
-        -- Check if LSP is attached and formatting is supported
-        local clients = vim.lsp.buf_get_clients()
-        for _, client in pairs(clients) do
-            if client.resolved_capabilities and client.resolved_capabilities.document_formatting then
-                -- Trigger LSP formatting
-                vim.lsp.buf.formatting_sync()
-                break
-            end
-        end
+  group = "AutoFormatAfterSurround",
+  callback = function()
+    -- Check if LSP is attached and formatting is supported
+    local clients = vim.lsp.buf_get_clients()
+    for _, client in pairs(clients) do
+      if client.resolved_capabilities and client.resolved_capabilities.document_formatting then
+        -- Trigger LSP formatting
+        vim.lsp.buf.formatting_sync()
+        break
+      end
     end
+  end
 })
 
 vim.api.nvim_create_augroup("AutoReloadExternalChanges", { clear = true })
@@ -196,24 +196,24 @@ lvim.builtin.which_key.mappings["?"] = { ":Telescope lsp_document_symbols<CR>", 
 
 -- Define a function to execute the selected text as Lua code
 local function send_to_lua()
-    -- Yank the selected text into the unnamed register
-    vim.cmd('y')
-    
-    -- Get the yanked text from the unnamed register
-    local code = vim.fn.getreg('"')
-    
-    -- Load and execute the code
-    local func, err = load(code)
-    if func then
-        local ok, result = pcall(func)
-        if ok then
-            print("Result:", result)
-        else
-            print("Execution error:", result)
-        end
+  -- Yank the selected text into the unnamed register
+  vim.cmd('y')
+
+  -- Get the yanked text from the unnamed register
+  local code = vim.fn.getreg('"')
+
+  -- Load and execute the code
+  local func, err = load(code)
+  if func then
+    local ok, result = pcall(func)
+    if ok then
+      print("Result:", result)
     else
-        print("Load error:", err)
+      print("Execution error:", result)
     end
+  else
+    print("Load error:", err)
+  end
 end
 
 vim.cmd("command! -range SendToLua lua send_to_lua()")
@@ -253,7 +253,7 @@ function toggle_lazygit()
       width = 220,
       height = 60
     },
--- require('harpoon.ui').swap()
+    -- require('harpoon.ui').swap()
     on_open = function(term)
       vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>lua toggle_lazygit()<CR>', { noremap = true, silent = true })
     end,

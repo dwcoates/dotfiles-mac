@@ -108,6 +108,29 @@ vim.api.nvim_create_autocmd({"TextChanged", "InsertLeave"}, {
     end
 })
 
+vim.api.nvim_create_augroup("AutoReloadExternalChanges", { clear = true })
+vim.api.nvim_create_autocmd({"FocusGained", "BufEnter"}, {
+  group = "AutoReloadExternalChanges",
+  pattern = "*",
+  callback = function()
+    if vim.fn.filereadable(vim.fn.expand('%')) == 1 then
+      if vim.fn.getbufvar(vim.fn.bufnr('%'), '&mod') == 1 then
+        return
+      end
+      local buf = vim.api.nvim_get_current_buf()
+      local win = vim.api.nvim_get_current_win()
+      -- Save the cursor position
+      local cursor = vim.api.nvim_win_get_cursor(win)
+      -- Reload the file
+      vim.api.nvim_buf_call(buf, function()
+        vim.cmd('silent! e!')
+      end)
+      -- Restore the cursor position
+      vim.api.nvim_win_set_cursor(win, cursor)
+    end
+  end
+})
+
 -- Harpoon keymaps
 lvim.keys.normal_mode["<leader>hm"] = ":lua require('harpoon.mark').add_file()<CR>"
 lvim.keys.normal_mode["<leader>ht"] = ":lua require('harpoon.ui').toggle_quick_menu()<CR>"

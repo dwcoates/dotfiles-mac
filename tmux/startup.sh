@@ -30,8 +30,7 @@ function add_window {
   add_window 'definitions' $df 9 
   add_window 'game-state-cache' "${CHESSCOM_PATH}/gametree" 10 
   add_window 'ceac-clusters-proxy' $cp 11
-  add_window 'project-term' $pt 12
-  add_window 'project-session' $pe 13
-  add_window 'cee-microservice' $cm 13
+  add_window 'cee-microservice' $cm 12
+  add_window 'puzzlegen-service' $ps 13
 
   tmux attach -t $SESSION

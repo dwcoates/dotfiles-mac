@@ -311,26 +311,26 @@ vim.api.nvim_set_keymap('n', '<leader>km', '<cmd>lua require("telescope.builtin"
 
 lvim.builtin.which_key.mappings["s"]["r"] = { ":Telescope lsp_references<CR>", "Symbol References" }
 
-function toggle_lazygit()
-  local Terminal = require('toggleterm.terminal').Terminal
-  local lazygit = Terminal:new({
-    cmd = "lazygit",
-    hidden = true,
-    direction = 'float',
-    float_opts = {
-      border = 'curved',
-      width = 220,
-      height = 60
-    },
-    -- require('harpoon.ui').swap()
-    on_open = function(term)
-      vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>lua toggle_lazygit()<CR>', { noremap = true, silent = true })
-    end,
-  })
-  lazygit:toggle()
-end
-vim.cmd("command! LazyGit lua toggle_lazygit()")
-lvim.builtin.which_key.mappings["g"]["g"] = { ":LazyGit<CR>", "LazyGit Status" }
+-- function toggle_lazygit()
+--   local Terminal = require('toggleterm.terminal').Terminal
+--   local lazygit = Terminal:new({
+--     cmd = "lazygit",
+--     hidden = true,
+--     direction = 'float',
+--     float_opts = {
+--       border = 'curved',
+--       width = 220,
+--       height = 60
+--     },
+--     -- require('harpoon.ui').swap()
+--     on_open = function(term)
+--       vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>lua toggle_lazygit()<CR>', { noremap = true, silent = true })
+--     end,
+--   })
+--   lazygit:toggle()
+-- end
+-- vim.cmd("command! LazyGit lua toggle_lazygit()")
+-- lvim.builtin.which_key.mappings["g"]["g"] = { ":LazyGit<CR>", "LazyGit Status" }
 
 lvim.builtin.which_key.mappings["f"] = { ":Telescope git_files<CR>", "Search Project Files" }
 

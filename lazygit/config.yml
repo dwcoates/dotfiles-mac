@@ -37,7 +37,7 @@ gui:
     show: true
   mouseEvents: true
   skipDiscardChangeWarning: true
-  skipStashWarning: false
+  skipStashWarning: true
   showFileTree: true # for rendering changes files in a tree format
   showListFooter: true # for seeing the '5 of 20' message in list panels
   showRandomTip: true
@@ -47,7 +47,7 @@ gui:
   nerdFontsVersion: "" # nerd fonts version to use ("2" or "3"); empty means don't show nerd font icons
   commandLogSize: 8
   splitDiff: 'auto' # one of 'auto' | 'always'
-  skipRewordInEditorWarning: false # for skipping the confirmation before launching the reword editor
+  skipRewordInEditorWarning: true # for skipping the confirmation before launching the reword editor
   border: 'rounded' # one of 'single' | 'double' | 'rounded' | 'hidden'
   animateExplosion: true # shows an explosion animation when nuking the working tree
 git:

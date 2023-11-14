@@ -10,8 +10,7 @@ bindkey -v # VIM bindings
 
 export PYGNPATH="$HOME/workspace/pygn-mode"
 export UCIMODEPATH="$HOME/workspace/uci-mode"
-export PATH="$PATH:$HOME/.emacs.d/bin"
-
+export PATH="$PATH:$HOME/.emacs.d/bin":"/Applications/Neovim.app/Contents/MacOS"
 ###################
 ### ChessCom
 ###################

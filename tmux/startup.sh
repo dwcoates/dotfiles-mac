@@ -9,15 +9,23 @@ tmux new-session -d -s $SESSION -c ~ -n scratch # Window 1
 function add_window {
     local name=$1
     local dir=$2
-    local window=$3
     local cmd1=$4
+    local window=$3
     
     tmux new-window -t $SESSION:$window  -n $name 
     tmux send-keys -t $SESSION:$window "cd $dir && v" Enter # `v` is set by .zshrc to automatically load the lvim session. See dotfiles/zsh/lvim-git.sh.
+    sleep 0.4
+    tmux send-keys -t $SESSION:$window 'Escape' 'Space' 'e' Enter 
 
     if [[ -n $cmd1 ]]; then
       tmux send-keys -t $SESSION:$window $cmd1 Enter
     fi
+
+    tmux split-window -v
+    tmux select-pane -D
+    tmux send-keys -t $SESSION:$window.2 "cd $dir" Enter # `v` is set by .zshrc to automatically load the lvim session. See dotfiles/zsh/lvim-git.sh.
+    tmux resize-pane -y 25
+    tmux send-keys -t $SESSION:$window "cd $dir && v" Enter # `v` is set by .zshrc to automatically load the lvim session. See dotfiles/zsh/lvim-git.sh.
   }
 
   add_window 'ceac' $ce 2 

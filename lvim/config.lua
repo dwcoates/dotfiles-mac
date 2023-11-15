@@ -52,14 +52,15 @@ lvim.plugins = {
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
+    -- dependencies = {
+    --   'nvim-treesitter/nvim-treesitter-textobjects',
+    -- },
     build = ':TSUpdate',
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     after = "nvim-treesitter",
+    commit = "e1e670a", --- This is supposed to fix the cpp issue? 
     config = function()
       require 'nvim-treesitter.configs'.setup {
         textobjects = {
@@ -72,14 +73,14 @@ lvim.plugins = {
               ["if"] = "@function.inner",
               ["as"] = "@class.outer",
               ["is"] = "@class.inner",
-              ["ai"] = "@conditional.outer",
-              ["ii"] = "@conditional.inner",
-              ["al"] = "@loop.outer",
-              ["il"] = "@loop.inner",
+              ["ac"] = "@conditional.outer",
+              ["ic"] = "@conditional.inner",
+              ["ad"] = "@loop.outer",
+              ["id"] = "@loop.inner",
               ["ab"] = "@block.outer",
               ["ib"] = "@block.inner",
-              ["acm"] = "@comment.outer",
-              ["aa"] = "@parameter.inner",
+              ["ia"] = "@parameter.inner",
+              ["aa"] = "@parameter.outer",
             },
             selection_modes = {
               ['@parameter.outer'] = 'v', -- charwise
@@ -92,36 +93,64 @@ lvim.plugins = {
             enable = true,
             set_jumps = false, -- whether to set jumps in the jumplist
             goto_next_start = {
-              ["]]"] = "@function.outer",
-              -- ["]["] = "@function.outer",
-              ["]o"] = "@loop.outer",
-              -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
+              ["]["] = "@function.outer",
+              ["]f["] = "@function.outer",
+              ["]d["] = "@loop.outer",
+              ["]s["] = "@class.outer",
+              ["]c["] = "@conditional.outer",
+              ["]b["] = "@block.outer",
+              ["]a["] = "@parameter.outer",
             },
             goto_next_end = {
-              ["]["] = "@function.outer",
-              -- ["]["] = "@class.outer",
+              ["]]"] = "@function.outer",
+              ["]f]"] = "@function.outer",
+              ["]d]"] = "@loop.outer",
+              ["]s]"] = "@class.outer",
+              ["]c]"] = "@conditional.outer",
+              ["]b]"] = "@block.outer",
+              ["]a]"] = "@parameter.outer",
             },
             goto_previous_start = {
               ["[["] = "@function.outer",
-              -- ["[]"] = "@function.outer",
+              ["[f["] = "@function.outer",
+              ["[d["] = "@loop.outer",
+              ["[s["] = "@class.outer",
+              ["[c["] = "@conditional.outer",
+              ["[b["] = "@block.outer",
+              ["[a]"] = "@parameter.outer",
             },
             goto_previous_end = {
               ["[]"] = "@function.outer",
-              -- ["[]"] = "@class.outer",
+              ["[f]"] = "@function.outer",
+              ["[d]"] = "@loop.outer",
+              ["[s]"] = "@class.outer",
+              ["[c]"] = "@conditional.outer",
+              ["[b]"] = "@block.outer",
+              ["[a]"] = "@parameter.outer",
             },
             goto_next = {
-              ["]d"] = "@conditional.outer",
+              ["]F"] = "@function.outer",
+              ["]C"] = "@conditional.outer",
+              ["]D"] = "@loop.outer",
+              ["]S"] = "@class.outer",
+              ["]B"] = "@block.outer",
+              ["]A"] = "@parameter.outer",
             },
             goto_previous = {
-              ["[d"] = "@conditional.outer",
+              ["[F"] = "@function.outer",
+              ["[C"] = "@conditional.outer",
+              ["[D"] = "@loop.outer",
+              ["[S"] = "@class.outer",
+              ["[B"] = "@block.outer",
+              ["[A"] = "@parameter.outer",
             },
           },
           lsp_interop = {
             enable = true,
             border = 'none',
             peek_definition_code = {
-              ["<leader>pf"] = "@function.outer",
-              ["<leader>pF"] = "@class.outer",
+              ["<leader>hdf"] = "@function.outer",
+              ["<leader>hdc"] = "@class.outer",
             },
           },
         },

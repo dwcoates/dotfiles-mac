@@ -2,35 +2,36 @@
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
 lvim.plugins = {
-  {'tpope/vim-rsi'},
-  
+  { 'tpope/vim-rsi' },
+
   {
     'sainnhe/gruvbox-material',
     priority = 1010,
-    config = function() 
+    config = function()
       vim.g.gruvbox_material_background = 'hard'      -- Options: 'soft', 'medium', 'hard'
       -- vim.g.gruvbox_material_foreground = 'hard'   -- Options: 'soft', 'medium', 'hard'
       vim.g.gruvbox_material_palette = 'material'     -- Options: 'material', 'mix', 'original'
       vim.g.gruvbox_material_enable_bold = 1          -- Options: 0, 1
       vim.g.gruvbox_material_dim_inactive_windows = 1 -- Options: 0, 1
       vim.g.gruvbox_material_visual = 'grey background'
-      vim.g.gruvbox_material_menu_selection_background = 'grey' -- Options: 'grey', 'red', 'orange', 'yellow', 'green', 'aqua', 'blue', 'purple'
+      vim.g.gruvbox_material_menu_selection_background =
+      'grey'                                     -- Options: 'grey', 'red', 'orange', 'yellow', 'green', 'aqua', 'blue', 'purple'
       vim.g.ruvbox_material_ui_contrast = 'high' -- Options: 'low', 'high'
       lvim.colorscheme = "gruvbox-material"
-      require'lualine'.setup { options = { theme = 'gruvbox-material' } }
+      require 'lualine'.setup { options = { theme = 'gruvbox-material' } }
     end
   },
 
-  {"justinmk/vim-sneak"},
+  { "justinmk/vim-sneak" },
 
-  {"tpope/vim-surround"},
+  { "tpope/vim-surround" },
 
-  {'dwcoates/project-term'},
-  {'dwcoates/project-session'},
+  { 'dwcoates/project-term' },
+  { 'dwcoates/project-session' },
 
-  {'mbbill/undotree'},
+  { 'mbbill/undotree' },
 
-  {'ThePrimeagen/harpoon'},
+  { 'ThePrimeagen/harpoon' },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -44,7 +45,7 @@ lvim.plugins = {
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -53,7 +54,7 @@ lvim.plugins = {
 
   {
     'christoomey/vim-tmux-navigator',
-    event = 'VimEnter',  -- Load on VimEnter event
+    event = 'VimEnter', -- Load on VimEnter event
   },
 
   {
@@ -67,7 +68,7 @@ lvim.plugins = {
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     after = "nvim-treesitter",
-    commit = "e1e670a", --- This is supposed to fix the cpp issue? 
+    commit = "e1e670a", --- This is supposed to fix the cpp issue?
     config = function()
       require 'nvim-treesitter.configs'.setup {
         textobjects = {
@@ -190,7 +191,7 @@ end
 
 -- Bind the function to a key, e.g., <leader>b
 -- Telescope keybinding to find recently opened files
-lvim.keys.normal_mode["<leader>x"] =  ":lua OpenTelescopeBuffers()<CR>"
+lvim.keys.normal_mode["<leader>x"] = ":lua OpenTelescopeBuffers()<CR>"
 lvim.keys.normal_mode["<leader>r"] = ":Telescope recentfiles<CR>"
 
 -- lvim.builtin.which_key.mappings["r"] = { ":Telescope recentfiles<CR>", "Recent Files" } --FIXME: should replace impl above
@@ -206,7 +207,7 @@ lvim.builtin.which_key.mappings["s"]["r"] = { ":Telescope lsp_references<CR>", "
 
 vim.api.nvim_create_augroup("AutoFormatAfterSurround", { clear = true })
 
-vim.api.nvim_create_autocmd({"TextChanged", "InsertLeave"}, {
+vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
   group = "AutoFormatAfterSurround",
   callback = function()
     -- Check if LSP is attached and formatting is supported
@@ -222,7 +223,7 @@ vim.api.nvim_create_autocmd({"TextChanged", "InsertLeave"}, {
 })
 
 vim.api.nvim_create_augroup("AutoReloadExternalChanges", { clear = true })
-vim.api.nvim_create_autocmd({"FocusGained", "BufEnter"}, {
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   group = "AutoReloadExternalChanges",
   pattern = "*",
   callback = function()
@@ -250,21 +251,21 @@ lvim.keys.normal_mode["<leader>ht"] = ":lua require('harpoon.ui').toggle_quick_m
 
 -- Add 'dofile ("/path/to/this/file")' to ~/.config/lvim/config.lua to use this file
 -- https://fnune.com/2021/11/20/nuking-most-of-my-vimrc-and-just-using-lunarvim/
-vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
+vim.opt.cmdheight = 1          -- more space in the neovim command line for displaying messages
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
-vim.opt.hidden = true -- required to keep multiple buffers and open multiple buffers
-vim.opt.hlsearch = false -- highlight all matches on previous search pattern
-vim.opt.mouse = "a" -- allow the mouse to be used in neovim
-vim.opt.smartcase = true -- smart case
-vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
-vim.opt.wrap = false -- display lines as one long line
-vim.opt.relativenumber = true -- Show line numbers relative to the current line
-vim.opt.number = true -- Show the actual current line number
+vim.opt.hidden = true          -- required to keep multiple buffers and open multiple buffers
+vim.opt.hlsearch = false       -- highlight all matches on previous search pattern
+vim.opt.mouse = "a"            -- allow the mouse to be used in neovim
+vim.opt.smartcase = true       -- smart case
+vim.opt.termguicolors = true   -- set term gui colors (most terminals support this)
+vim.opt.wrap = false           -- display lines as one long line
+vim.opt.relativenumber = true  -- Show line numbers relative to the current line
+vim.opt.number = true          -- Show the actual current line number
 vim.opt.autoindent = true
 vim.opt.cindent = true
 vim.opt.expandtab = true -- convert tabs to spaces
-vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 2 -- insert 2 spaces for a tab
+vim.opt.shiftwidth = 2   -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 2      -- insert 2 spaces for a tab
 
 vim.cmd([[
   " Make j & k behave as expected in line wrap mode
@@ -349,7 +350,9 @@ require('project-session')
 
 lvim.keys.normal_mode["<leader>X"] = ":ProjectTerm<CR>"
 
-vim.api.nvim_set_keymap('n', '<leader>km', '<cmd>lua require("telescope.builtin").keymaps({ layout_config = { width = 0.7, height = 0.5 }, color_devicons = true, sorting_strategy = "ascending" })<CR>', { noremap = true, silent = true, desc = "Show keymaps" })
+vim.api.nvim_set_keymap('n', '<leader>km',
+  '<cmd>lua require("telescope.builtin").keymaps({ layout_config = { width = 0.7, height = 0.5 }, color_devicons = true, sorting_strategy = "ascending" })<CR>',
+  { noremap = true, silent = true, desc = "Show keymaps" })
 
 -- lvim.builtin.which.key_mappings["d"] = ":echo 'hello, world'"
 
@@ -378,9 +381,10 @@ lvim.builtin.which_key.mappings["s"]["r"] = { ":Telescope lsp_references<CR>", "
 
 lvim.builtin.which_key.mappings["f"] = { ":Telescope git_files<CR>", "Search Project Files" }
 
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "javascript", "rust", "zig", "cpp", "json", "yaml", "bash" },
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "javascript", "rust", "zig", "cpp", "json",
+    "yaml", "bash" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = true,
@@ -433,7 +437,7 @@ lvim.builtin.cmp.setup = {
 
 require('lspconfig').bufls.setup {}
 
---FIXME: this breaks goto-xyz bindings. Is this even useful? Delete? 
+--FIXME: this breaks goto-xyz bindings. Is this even useful? Delete?
 -- require('lspconfig').clangd.setup {
 --   filetypes = { "c", "cpp" },
 --   cmd = {

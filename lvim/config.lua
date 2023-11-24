@@ -151,6 +151,7 @@ lvim.plugins = {
             peek_definition_code = {
               ["<leader>hdf"] = "@function.outer",
               ["<leader>hdc"] = "@class.outer",
+              ["<leader>hda"] = "@parameter.outer",
             },
           },
         },

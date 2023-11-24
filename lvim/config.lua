@@ -11,15 +11,15 @@ lvim.plugins = {
   {'dwcoates/project-term'},
   {'dwcoates/project-session'},
 
-  {
-    'marko-cerovac/material.nvim',
-    priority = 1010,
-    config = function()
-      vim.cmd.colorscheme 'material'
-      vim.g.material_style = "deep ocean"
-      -- require('material').set()
-    end
-  },
+  -- {
+  --   'marko-cerovac/material.nvim',
+  --   priority = 1010,
+  --   config = function()
+  --     vim.cmd.colorscheme 'material'
+  --     vim.g.material_style = "deep ocean"
+  --     -- require('material').set()
+  --   end
+  -- },
 
   {'mbbill/undotree'},
 
@@ -163,7 +163,7 @@ lvim.plugins = {
   { 'glepnir/dashboard-nvim' },
 }
 
-vim.g.material_style = "deep ocean" -- Choose your style: 'darker', 'lighter', 'palenight', 'oceanic', etc.
+-- vim.g.material_style = "deep ocean" -- Choose your style: 'darker', 'lighter', 'palenight', 'oceanic', etc.
 
 lvim.keys.normal_mode["<leader>sP"] = ":Telescope projects<CR>"
 

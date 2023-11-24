@@ -463,4 +463,4 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 lvim.builtin.which_key.mappings["q"] = { ":qa<CR>" }
 
 lvim.format_on_save.enabled = true
-lvim.format_on_save.pattern = { "*.cpp", "*.h", "*.c" }
+lvim.format_on_save.pattern = { "*.cpp", "*.h", "*.c", "*.lua", "*.py", "*.ts", "*.js", "*.go" }

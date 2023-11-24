@@ -3,6 +3,8 @@
 
 lvim.plugins = {
   {'tpope/vim-rsi'},
+  
+  {'sainnhe/gruvbox-material'},
 
   {"justinmk/vim-sneak"},
 

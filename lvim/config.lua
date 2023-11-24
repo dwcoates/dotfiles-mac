@@ -4,24 +4,29 @@
 lvim.plugins = {
   { 'tpope/vim-rsi' },
 
+  -- {
+  --   'sainnhe/gruvbox-material',
+  --   priority = 1010,
+  --   config = function()
+  --     vim.g.gruvbox_material_background = 'hard'      -- Options: 'soft', 'medium', 'hard'
+  --     -- vim.g.gruvbox_material_foreground = 'hard'   -- Options: 'soft', 'medium', 'hard'
+  --     vim.g.gruvbox_material_palette = 'material'     -- Options: 'material', 'mix', 'original'
+  --     vim.g.gruvbox_material_enable_bold = 1          -- Options: 0, 1
+  --     vim.g.gruvbox_material_dim_inactive_windows = 1 -- Options: 0, 1
+  --     vim.g.gruvbox_material_visual = 'grey background'
+  --     vim.g.gruvbox_material_menu_selection_background =
+  --     'grey'                                     -- Options: 'grey', 'red', 'orange', 'yellow', 'green', 'aqua', 'blue', 'purple'
+  --     vim.g.ruvbox_material_ui_contrast = 'high' -- Options: 'low', 'high'
+  --     lvim.colorscheme = "gruvbox-material"
+  --     require 'lualine'.setup { options = { theme = 'gruvbox-material' } }
+  --   end
+  -- },
   {
-    'sainnhe/gruvbox-material',
-    priority = 1010,
+    'NLKNguyen/papercolor-theme',
     config = function()
-      vim.g.gruvbox_material_background = 'hard'      -- Options: 'soft', 'medium', 'hard'
-      -- vim.g.gruvbox_material_foreground = 'hard'   -- Options: 'soft', 'medium', 'hard'
-      vim.g.gruvbox_material_palette = 'material'     -- Options: 'material', 'mix', 'original'
-      vim.g.gruvbox_material_enable_bold = 1          -- Options: 0, 1
-      vim.g.gruvbox_material_dim_inactive_windows = 1 -- Options: 0, 1
-      vim.g.gruvbox_material_visual = 'grey background'
-      vim.g.gruvbox_material_menu_selection_background =
-      'grey'                                     -- Options: 'grey', 'red', 'orange', 'yellow', 'green', 'aqua', 'blue', 'purple'
-      vim.g.ruvbox_material_ui_contrast = 'high' -- Options: 'low', 'high'
-      lvim.colorscheme = "gruvbox-material"
-      require 'lualine'.setup { options = { theme = 'gruvbox-material' } }
+      lvim.colorscheme = "papercolor"
     end
   },
-
   { "justinmk/vim-sneak" },
 
   { "tpope/vim-surround" },

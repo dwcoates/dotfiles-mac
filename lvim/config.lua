@@ -21,11 +21,14 @@ lvim.plugins = {
   --     require 'lualine'.setup { options = { theme = 'gruvbox-material' } }
   --   end
   -- },
+  -- {
+  --   'NLKNguyen/papercolor-theme',
+  --   config = function()
+  --     lvim.colorscheme = "papercolor"
+  --   end
+  -- },
   {
-    'NLKNguyen/papercolor-theme',
-    config = function()
-      lvim.colorscheme = "papercolor"
-    end
+    'Mofiqul/dracula.nvim'
   },
   { "justinmk/vim-sneak" },
 

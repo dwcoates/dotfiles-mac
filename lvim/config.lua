@@ -27,18 +27,18 @@ lvim.plugins = {
   --     lvim.colorscheme = "papercolor"
   --   end
   -- },
-  -- {
-  --   'Mofiqul/dracula.nvim',
-  --   config = function()
-  --     lvim.colorscheme = "dracula"
-  --   end
-  -- },
   {
-    'joshdick/onedark.vim',
+    'Mofiqul/dracula.nvim',
     config = function()
-      lvim.colorscheme = "onedark"
+      lvim.colorscheme = "dracula"
     end
   },
+  -- {
+  --   'joshdick/onedark.vim',
+  --   config = function()
+  --     lvim.colorscheme = "onedark"
+  --   end
+  -- },
   { "justinmk/vim-sneak" },
 
   { "tpope/vim-surround" },

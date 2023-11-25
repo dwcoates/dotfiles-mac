@@ -11,11 +11,11 @@ gui:
   shortTimeFormat: '3:04PM'
   theme:
     activeBorderColor:
-      - red
+      - green
       - bold
     inactiveBorderColor:
       - black 
-      - cyan
+      - magenta
     searchingActiveBorderColor:
       - cyan
       - bold

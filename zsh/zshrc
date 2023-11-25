@@ -1,5 +1,6 @@
 ZSH_THEME="robbyrussell"
-PROMPT='[%T] %F{240}%n%F{red}@%F{green}%m%F{red}:%F{120}%~ %F{reset}'$'\n$ '
+# 
+PROMPT='%F{#783e5b}[%T] %F{240}%n%F{red}@%F{green}%m%F{red}:%F{#5f4580}%~ %F{reset}'$'\n$ '
 export PATH="$PATH:$HOME/bin"
 
 bindkey -v # VIM bindings

@@ -210,7 +210,7 @@ font:
 # Colors (Tomorrow Night)
 colors:
   primary:
-   background: '#171717'
+   background: '#1f1b24'
    foreground: '#c5c8c6'
 
     # Bright and dim foreground colors

@@ -349,9 +349,6 @@ end
 
 vim.cmd("command! -range SendToLua lua send_to_lua()")
 
-lvim.builtin.telescope.defaults.layout_config.width = 0.60
-lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
-
 vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true })
 
@@ -482,6 +479,47 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 -- ]], false)
 
 lvim.builtin.which_key.mappings["q"] = { ":qa<CR>" }
+
+lvim.builtin.telescope.defaults = {
+  border = {},
+  color_devicons = true,
+  entry_prefix = "  ",
+  file_ignore_patterns = {},
+  initial_mode = "insert",
+  mappings = {
+    i = {
+      -- ["<C-c>"] = <function 1>,
+      -- ["<C-j>"] = <function 2>,
+      -- ["<C-k>"] = <function 3>,
+      -- ["<C-n>"] = <function 4>,
+      -- ["<C-p>"] = <function 5>,
+      -- ["<C-q>"] = <function 6>,
+      -- ["<CR>"] = <function 7>
+    },
+    n = {
+      -- ["<C-n>"] = <function 8>,
+      -- ["<C-p>"] = <function 9>,
+      -- ["<C-q>"] = <function 10>
+    }
+  },
+  prompt_prefix = " ",
+  selection_caret = " ",
+  selection_strategy = "reset",
+  set_env = {
+    COLORTERM = "truecolor"
+  },
+  vimgrep_arguments = { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column",
+    "--smart-case", "--hidden", "--glob=!.git/" },
+  winblend = 0,
+  -- use fd to "find files" and return absolute paths
+  find_command = { "fd", "-t=f", "-a" },
+  path_display = { "absolute" },
+  wrap_results = true,
+  layout_config = {
+    width = 0.60,
+    preview_cutoff = 75
+  },
+}
 
 lvim.format_on_save.enabled = true
 lvim.format_on_save.pattern = { "*.cpp", "*.h", "*.c", "*.lua", "*.py", "*.ts", "*.js", "*.go" }

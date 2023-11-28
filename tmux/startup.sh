@@ -9,8 +9,8 @@ tmux new-session -d -s $SESSION -c ~ -n scratch # Window 1
 function add_window {
     local name=$1
     local dir=$2
-    local cmd1=$4
     local window=$3
+    local cmd1=$4
     
     tmux new-window -t $SESSION:$window  -n $name 
     tmux send-keys -t $SESSION:$window "cd $dir && v" Enter # `v` is set by .zshrc to automatically load the lvim session. See dotfiles/zsh/lvim-git.sh.
@@ -29,7 +29,7 @@ function add_window {
   }
 
   add_window 'ceac' $ce 2 
-  add_window 'dotfiles' $dt 3 ':e ./lvim/config.lua' 
+  add_window 'dotfiles' $dt 3 #':e ./lvim/config.lua' 
   add_window 'explanation-engine' $ee 4 
   add_window 'engine-services' $es 5 
   add_window 'clue' $cl 6 

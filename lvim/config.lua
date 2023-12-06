@@ -2,6 +2,7 @@
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
 lvim.plugins = {
+  { "f-person/git-blame.nvim" },
   {
     "NeogitOrg/neogit",
     dependencies = {
@@ -537,3 +538,7 @@ lvim.lsp.buffer_mappings["gr"] = false
 lvim.builtin.which_key.mappings["b"]["p"] = { ":b#<CR>", "Previous (alternating)" }
 
 lvim.builtin.which_key.mappings["g"]["g"] = { ":Neogit<CR>", "Neogit" }
+
+require('gitblame').setup {
+  enabled = true,
+}

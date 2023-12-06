@@ -2,6 +2,33 @@
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
 lvim.plugins = {
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "nvim-telescope/telescope.nvim", -- optional
+      "sindrets/diffview.nvim",        -- optional
+      "ibhagwan/fzf-lua",              -- optional
+    },
+    config = function()
+      require('neogit').setup {
+        log = {
+          default_commit_count = 20 -- Set your desired default number of commits
+        },
+      }
+
+      require("neogit").config.default_commit_count = 20;
+
+      -- vim.api.nvim_set_hl(0, "NeogitDiffAdd", { foreground = "#ce2c28" })
+
+      vim.api.nvim_set_hl(0, 'NeogitDiffAdd', { fg = '#176110', bg = '#2aad1c' })
+      vim.api.nvim_set_hl(0, 'NeogitDiffAddHighlight', { fg = '#1e8016', bg = '#32cf21' })
+      -- vim.api.nvim_set_hl(0, 'NeogitDiffAdd', { fg = '#00ff00', bg = '#000000' })
+      -- vim.api.nvim_set_hl(0, 'NeogitDiffAdd', { fg = '#00ff00', bg = '#000000' })
+      -- vim.api.nvim_set_hl(0, 'NeogitDiffAdd', { fg = '#00ff00', bg = '#000000' })
+    end,
+    cmd = "Neogit",
+  },
   { 'tpope/vim-rsi' },
 
   -- {
@@ -188,6 +215,7 @@ lvim.plugins = {
   { 'glepnir/dashboard-nvim' },
 }
 
+
 lvim.keys.normal_mode["<leader>sP"] = ":Telescope projects<CR>"
 
 -- turn off highlighting from a search after escape
@@ -239,28 +267,28 @@ vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
   end
 })
 
-vim.api.nvim_create_augroup("AutoReloadExternalChanges", { clear = true })
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
-  group = "AutoReloadExternalChanges",
-  pattern = "*",
-  callback = function()
-    if vim.fn.filereadable(vim.fn.expand('%')) == 1 then
-      if vim.fn.getbufvar(vim.fn.bufnr('%'), '&mod') == 1 then
-        return
-      end
-      local buf = vim.api.nvim_get_current_buf()
-      local win = vim.api.nvim_get_current_win()
-      -- Save the cursor position
-      local cursor = vim.api.nvim_win_get_cursor(win)
-      -- Reload the file
-      vim.api.nvim_buf_call(buf, function()
-        vim.cmd('silent! e!')
-      end)
-      -- Restore the cursor position
-      vim.api.nvim_win_set_cursor(win, cursor)
-    end
-  end
-})
+-- vim.api.nvim_create_augroup("AutoReloadExternalChanges", { clear = true })
+-- vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+--   group = "AutoReloadExternalChanges",
+--   pattern = "*",
+--   callback = function()
+--     if vim.fn.filereadable(vim.fn.expand('%')) == 1 then
+--       if vim.fn.getbufvar(vim.fn.bufnr('%'), '&mod') == 1 then
+--         return
+--       end
+--       local buf = vim.api.nvim_get_current_buf()
+--       local win = vim.api.nvim_get_current_win()
+--       -- Save the cursor position
+--       local cursor = vim.api.nvim_win_get_cursor(win)
+--       -- Reload the file
+--       vim.api.nvim_buf_call(buf, function()
+--         vim.cmd('silent! e!')
+--       end)
+--       -- Restore the cursor position
+--       vim.api.nvim_win_set_cursor(win, cursor)
+--     end
+--   end
+-- })
 
 -- Harpoon keymaps
 lvim.keys.normal_mode["<leader>hm"] = ":lua require('harpoon.mark').add_file()<CR>"
@@ -371,27 +399,6 @@ vim.api.nvim_set_keymap('n', '<leader>km',
 -- lvim.builtin.which.key_mappings["d"] = ":echo 'hello, world'"
 
 lvim.builtin.which_key.mappings["s"]["r"] = { ":Telescope lsp_references<CR>", "Symbol References" }
-
--- function toggle_lazygit()
---   local Terminal = require('toggleterm.terminal').Terminal
---   local lazygit = Terminal:new({
---     cmd = "lazygit",
---     hidden = true,
---     direction = 'float',
---     float_opts = {
---       border = 'curved',
---       width = 220,
---       height = 60
---     },
---     -- require('harpoon.ui').swap()
---     on_open = function(term)
---       vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>lua toggle_lazygit()<CR>', { noremap = true, silent = true })
---     end,
---   })
---   lazygit:toggle()
--- end
--- vim.cmd("command! LazyGit lua toggle_lazygit()")
--- lvim.builtin.which_key.mappings["g"]["g"] = { ":LazyGit<CR>", "LazyGit Status" }
 
 lvim.builtin.which_key.mappings["f"] = { ":Telescope git_files<CR>", "Search Project Files" }
 
@@ -523,3 +530,10 @@ lvim.builtin.telescope.defaults = {
 
 lvim.format_on_save.enabled = true
 lvim.format_on_save.pattern = { "*.cpp", "*.h", "*.c", "*.lua", "*.py", "*.ts", "*.js", "*.go" }
+
+lvim.keys.normal_mode["gr"] = false
+lvim.lsp.buffer_mappings["gr"] = false
+
+lvim.builtin.which_key.mappings["b"]["p"] = { ":b#<CR>", "Previous (alternating)" }
+
+lvim.builtin.which_key.mappings["g"]["g"] = { ":Neogit<CR>", "Neogit" }

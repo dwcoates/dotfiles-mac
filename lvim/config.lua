@@ -4,6 +4,33 @@
 lvim.plugins = {
   { "f-person/git-blame.nvim" },
   {
+    'Mofiqul/vscode.nvim',
+    config = function()
+      print("hello world")
+      vim.o.background = 'dark'
+      local c          = require('vscode.colors').get_colors()
+      require('vscode').setup({
+        style = 'dark',
+        -- transparent = true,
+        italic_comments = true,
+        disable_nvimtree_bg = true,
+
+        -- Override colors (see ./lua/vscode/colors.lua)
+        color_overrides = {
+          vscLineNumber = '#FFFFFF',
+        },
+
+        group_overrides = {
+          -- this supports the same val table as vim.api.nvim_set_hl
+          -- use colors from this colorscheme by requiring vscode.colors!
+          Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+        }
+      })
+      require('vscode').load()
+    end,
+    event = "BufEnter", -- Hacky, but whatever
+  },
+  {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim",         -- required
@@ -55,12 +82,12 @@ lvim.plugins = {
   --     lvim.colorscheme = "papercolor"
   --   end
   -- },
-  {
-    'Mofiqul/dracula.nvim',
-    config = function()
-      lvim.colorscheme = "dracula"
-    end
-  },
+  -- {
+  --   'Mofiqul/dracula.nvim',
+  --   config = function()
+  --     lvim.colorscheme = "dracula"
+  --   end
+  -- },
   -- {
   --   'joshdick/onedark.vim',
   --   config = function()

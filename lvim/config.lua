@@ -542,3 +542,26 @@ lvim.builtin.which_key.mappings["g"]["g"] = { ":Neogit<CR>", "Neogit" }
 require('gitblame').setup {
   enabled = true,
 }
+
+require('telescope').setup {
+  defaults = {
+    -- Define your custom sorter
+    sorting_strategy      = "ascending", -- This is optional
+    file_sorter           = require('telescope.sorters').get_fuzzy_file,
+    generic_sorter        = require('telescope.sorters').get_generic_fuzzy_sorter,
+    file_ignore_patterns  = {}, -- Define patterns to ignore (optional)
+
+    -- Customizing the fuzzy matching algorithm
+    file_previewer        = require('telescope.previewers').vim_buffer_cat.new,
+    grep_previewer        = require('telescope.previewers').vim_buffer_vimgrep.new,
+    qflist_previewer      = require('telescope.previewers').vim_buffer_qflist.new,
+
+    -- Adjust the following line to set n-gram length
+    -- For example, using a ngram highlighter with length 2
+    dynamic_preview_title = true,
+    color_devicons        = true,
+    set_env               = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+  }
+}
+
+lvim.builtin.which_key.mappings["g"]["x"] = { ":echo expand('%:p')" }

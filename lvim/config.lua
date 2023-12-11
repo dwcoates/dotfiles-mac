@@ -405,9 +405,6 @@ end
 
 vim.cmd("command! -range SendToLua lua send_to_lua()")
 
-vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true })
-
 -- FIXME:
 -- vim.builtin.lsp.mappings["g"]["d"] = { ':echo "hello, world"<CR>', "Goto Definon!" }
 

@@ -14,7 +14,7 @@ function add_window {
     
     tmux new-window -t $SESSION:$window  -n $name 
     tmux send-keys -t $SESSION:$window "cd $dir && v" Enter # `v` is set by .zshrc to automatically load the lvim session. See dotfiles/zsh/lvim-git.sh.
-    sleep 0.4
+    # sleep 0.4
     tmux send-keys -t $SESSION:$window 'Escape' 'Space' 'e' Enter 
 
     if [[ -n $cmd1 ]]; then

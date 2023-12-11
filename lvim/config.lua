@@ -567,6 +567,9 @@ require('gitblame').setup {
   enabled = true,
 }
 
+vim.g.gitblame_highlight_group = "Question"
+-- vim.g.gitblame_virtual_text_column = 120
+
 require('telescope').setup {
   defaults = {
     -- Define your custom sorter

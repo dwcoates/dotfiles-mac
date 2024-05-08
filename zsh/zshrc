@@ -3,6 +3,7 @@ ZSH_THEME="robbyrussell"
 # PROMPT='%F{#783e5b}[%T] %F{240}%n%F{red}@%F{green}%m%F{red}:%F{#5f4580}%~ %F{reset}'$'\n$ '
 PROMPT='%F{#4E94CE}[%T] %F{#CCCCCC}%n%F{#569CD6}@%F{#9CDCFE}%m%F{#569CD6}:%F{#C586C0}%~ %F{reset}'$'\n$ ' ## VSCode theme
 export PATH="$PATH:$HOME/bin"
+PATH="/Users/dodgecoates/workspace/ChessCom/clue/.bin/zig:$PATH"
 
 bindkey -v # VIM bindings
 
@@ -34,9 +35,13 @@ export DO_CEE_COMPILE_COMMANDS=true
 export PATH="/Users/dodgecoates/workspace/ChessCom/clue/.bin/zig":$PATH
 export PATH="$HOME/src/zls/zig-out/bin":$PATH
 export PATH="$HOME/src/nvim/bin":$PATH
-export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH}:${CHESSCOM_PATH}/insights-prototyping/cee"
-export CGO_LDFLAGS="-L${CHESSCOM_PATH}/insights-prototyping/cee"
+# export DYLD_LIBRARY_PATH="${DYLD_LIBRARY_PATH}:${CHESSCOM_PATH}/insights-prototyping/cee"
+# export CGO_LDFLAGS="-L${CHESSCOM_PATH}/insights-prototyping/cee"
 export LUA_PATH="${CHESSCOM_PATH}/insights-prototyping/lua/?.lua"
+# export DYLD_LIBRARY_PATH=-L${CEE_PATH}/target/debug:${DYLD_LIBRARY_PATH}
+export CGO_LDFLAGS=-L${CEE_PATH}/target/debug:${CGO_LDFLAGS}
+
+# export DYLD_LIBRARY_PATH="-L/opt/homebrew/Cellar/llvm/18.1.5/lib/c++"
 
 export DO_CEE_COMPILE_COMMANDS=true;
 
@@ -58,6 +63,8 @@ export ps=${CHESSCOM_PATH}/puzzlegen-service
 alias v="$dt/zsh/lvim-git.sh"
 alias V="lvim -- no-save-session"
 export pe=${WORKSPACE_PATH}/lua/project-session
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
 # Python
 export PYTHONPATH="${PYTHON_PATH}:${CEE_INTERFACE_PATH}/python"
@@ -143,3 +150,5 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 source /Users/dodgecoates/src/emsdk/emsdk_env.sh
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export CMAKE_EXE_LINKER_FLAGS="${CMAKE_EXE_LINKER_FLAGS} -L/opt/homebrew/Cellar/llvm/18.1.5/lib/c++"

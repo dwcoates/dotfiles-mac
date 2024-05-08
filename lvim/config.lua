@@ -98,8 +98,8 @@ lvim.plugins = {
 
   { "tpope/vim-surround" },
 
-  { 'dwcoates/project-term' },
-  { 'dwcoates/project-session' },
+  -- { 'dwcoates/project-term' },
+  -- { 'dwcoates/project-session' },
 
   { 'mbbill/undotree' },
 
@@ -412,8 +412,8 @@ vim.api.nvim_set_keymap('n', '<leader>t', ':t<CR>', { noremap = true, silent = t
 
 vim.o.autochdir = true
 
-require('projectterm')
-require('project-session')
+-- require('projectterm')
+-- require('project-session')
 
 lvim.keys.normal_mode["<leader>X"] = ":ProjectTerm<CR>"
 
@@ -563,11 +563,25 @@ lvim.builtin.which_key.mappings["b"]["p"] = { ":b#<CR>", "Previous (alternating)
 
 lvim.builtin.which_key.mappings["g"]["g"] = { ":Neogit<CR>", "Neogit" }
 
-require('gitblame').setup {
+local git_blame = require('gitblame')
+
+git_blame.setup {
   enabled = true,
 }
 
 vim.g.gitblame_highlight_group = "Question"
+vim.g.gitblame_message_template = '<author> • <date>'
+vim.g.gitblame_date_format = '%r'
+
+-- vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
+-- require('lualine').setup({
+--   sections = {
+--     lualine_c = {
+--       { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available }
+--     }
+--   },
+-- })
+
 -- vim.g.gitblame_virtual_text_column = 120
 
 require('telescope').setup {
@@ -592,3 +606,48 @@ require('telescope').setup {
 }
 
 lvim.builtin.which_key.mappings["g"]["x"] = { ":echo expand('%:p')" }
+
+vim.cmd [[
+  highlight CursorLine guibg=#3c4048
+]]
+
+-- vim.cmd [[hi Cursor guifg=#FFA500 guibg=#FFA500]]
+vim.o.cursorline = true
+
+-- vim.cmd [[
+--   highlight CursorLine guibg=#3c4048
+-- ]]
+
+print('start')
+
+if not lvim.autocommands then lvim.autocommands = { custom_groups = {} } end
+vim.list_extend(lvim.autocommands.custom_groups, { { "ColorScheme", "*", "highlight CursorLine guibg=#3c4048" } })
+
+print('done')
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.cmd("highlight CursorLine guibg=#3c4048")
+  end
+})
+
+-- vim.cmd([[
+--     NvimTreeResize 50
+-- ]])
+
+-- require("nvim-tree").setup({
+--   sort = {
+--     sorter = "case_sensitive",
+--   },
+--   view = {
+--     width = 60,
+--   },
+--   renderer = {
+--     group_empty = true,
+--   },
+--   filters = {
+--     dotfiles = true,
+--   },
+-- })
+
+lvim.builtin.which_key.mappings["l"]["v"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "View full diagnostic in popup" }
